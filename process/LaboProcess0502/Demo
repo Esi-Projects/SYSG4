@@ -1,0 +1,32 @@
+#!/bin/bash
+#NOM    : Demo
+#CLASSE : IPC - LaboProcess 05-02
+#OBJET  : réservé au Makefile
+#AUTEUR	: M. Bastreghi, 09/2017
+C='\033[44m'
+E='\033[32m\033[1m'
+W='\033[31m\033[1m'
+N='\033[0m'
+clear
+echo -e "Voici un aperçu du fichier ${E}/etc/passwd:${N}"
+echo "--------------------------------------"
+echo
+head -20 /etc/passwd
+echo
+echo -e "${C}             --> Enter pour continuer${N}"; read
+echo "--------------------------------------"
+echo
+echo -e "Exécution de ${E}cat /etc/passwd | cut -f6 -d ':' | sort ${N} :" 
+echo -e "${C}             --> Enter pour continuer${N}"; read
+cat /etc/passwd | cut -f6 -d ':' | sort
+echo
+echo -e "${C}             --> Enter pour continuer${N}"; read
+echo "Démonstration du programme PipeShellErr.c"
+echo -e "Exécution de ${E}./PipeShellErr${N} :"
+echo "----------------------------------------"
+echo
+echo -e "Quelle que soit la commande, c'est ${E}cat /etc/passwd | cut -f6 -d ':' | sort ${N} qui est exécuté"
+echo -e "${E}exit${N} pour terminer"
+echo
+./PipeShellErr
+echo -e "${C}             --> Enter pour continuer${N}"; read

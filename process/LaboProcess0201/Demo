@@ -1,0 +1,37 @@
+#!/bin/bash
+#NOM    : Demo
+#CLASSE : Process - LaboProcess 02-01
+#OBJET  : réservé au Makefile
+#AUTEUR	: J.C. Jaumain, 07/2011
+
+C='\033[44m'
+E='\033[32m\033[1m'
+N='\033[0m'
+
+clear
+echo "Démonstration du programme Wait4.c"
+echo "----------------------------------"
+echo
+echo "Utilisation des ressources du process en calcul (argument u)"
+echo -e "Exécution de ${E}./Wait4 u${N} :"
+./Wait4 u
+echo
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo "Utilisation des ressources du process en appel système (argument s)"
+echo -e "Exécution de ${E}./Wait4 s${N} :"
+./Wait4 s
+echo
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo "Utilisation de la commande interne time"
+echo -e "Exécution de ${E}time ./Wait4 u${N} :"
+time ./Wait4 u
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo "Utilisation de la commande interne time"
+echo -e "Exécution de ${E}time ./Wait4 s${N} :"
+time ./Wait4 s
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+

@@ -1,0 +1,21 @@
+yes | head -3500000 >> grand
+yes | head -5000 >> moyen
+yes | head -3500 >> petit
+
+mkdir disk2
+sudo cp petit disk2/
+sudo cp moyen disk2/
+sudo cp grand disk2/
+
+sudo debugfs /dev/sdc2
+ls -l
+stat petit
+stat moyen
+stat grand
+icheck (numéro de bloc)
+ncheck (numéro d'inode)
+ffb
+ffi
+undel (numero d"inode d'un fichier supprimé)
+stats
+quit

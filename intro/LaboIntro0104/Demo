@@ -1,0 +1,52 @@
+#!/bin/bash
+#NOM    : Demo
+#CLASSE : Intro - LaboIntro 01-04
+#OBJET  : réservé au makefile
+#AUTEUR	: J.C. Jaumain, 07/2011
+
+#codes couleur
+C='\033[44m'
+E='\033[32m\033[1m'
+N='\033[0m'
+
+echo "Commande echo écrite en c : Mecho"
+echo "---------------------------------"
+echo -e "Éxecution de ${E}echo coucou${N} :"
+echo coucou
+echo -e "Éxecution de ${E}./Mecho coucou${N} :"
+./Mecho coucou
+
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo -e "Éxecution de ${E}echo un deux trois${N} :"
+echo un deux trois
+echo -e "Éxecution de ${E}./Mecho un deux trois${N} :"
+./Mecho un deux trois
+
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo -e "Éxecution de ${E}echo une phrase complète > fichier1${N} :"
+echo une phrase complète > fichier1
+echo -e "Éxecution de ${E}./Mecho une phrase complète > fichier2${N} :"
+./Mecho une phrase complète > fichier2
+
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo -e "Éxecution de ${E}echo coucou >> fichier${N} :"
+echo coucou >> fichier
+echo -e "Éxecution de ${E}./Mecho coucou >> fichier${N} :"
+./Mecho coucou >> fichier
+
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo -e "Éxecution de ${E}echo coucou | wc -c${N} :"
+echo coucou | wc -c
+echo -e "Éxecution de ${E}./Mecho coucou | wc -c${N} :"
+./Mecho coucou | wc -c
+
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo -e "Éxecution de ${E}echo *${N} :"
+echo *
+echo -e "Éxecution de ${E}./Mecho *${N} :"
+./Mecho *

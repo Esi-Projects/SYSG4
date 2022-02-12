@@ -1,0 +1,26 @@
+#NOM    : monmakefile
+#CLASSE : Intro - LaboIntro 01-03
+#OBJET  : autour du Makefile
+#HOWTO	: make
+#AUTEUR	: mba 01/2016
+#
+ 
+
+Test:TestMake3
+	 ./TestMake3 3
+
+TestMake3 : TestMake3.o  boucle.o 
+	gcc -std=c99  TestMake3.o boucle.o -o TestMake3	# édition des liens TestMake3.o et boucle.o
+
+# compiler le programme
+TestMake3.o : TestMake3.c  MonInclude.h  boucle.h
+	gcc -std=c99  TestMake3.c -c -o TestMake3.o  	# compile Test3.c
+
+boucle.o :   boucle.h boucle.c
+	gcc -std=c99  boucle.c -c -o boucle.o	 	# compile boucle.c
+
+# supprime les fichiers objet, l'exécutable et les fichiers temporaires
+clean:
+	rm -f TestMake3 *.o  *~
+
+

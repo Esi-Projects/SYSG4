@@ -1,0 +1,87 @@
+#!/bin/bash
+#NOM    : Demo
+#CLASSE : ED - LaboED 01-04
+#OBJET  : réservé au makefile
+#AUTEUR	: J.C. Jaumain, 07/2011 M. Bastreghi 09/2020
+
+clear
+C='\033[44m'
+E='\033[32m\033[1m'
+W='\033[31m\033[1m'
+N='\033[0m'
+clear
+#Il faudra être root (0) pour exécuter ces commandes
+if [ $UID -ne 0 ] ; then
+	echo 
+	echo "Pour ce script vous avez besoin des droits d'administration"
+	echo "veuillez vous identifier en root et reessayer"
+	echo 
+	echo -e "${C}             --> Enter pour continuer${N}"
+	read
+	exit 1
+fi
+echo "Automatiser le partitionnement une opération dangereuse !!"
+echo "----------------------------------------------------------"
+echo
+# partitions selon fdisk
+fdisk -l
+echo
+echo "Si vous le souhaitez, insérez le device dont vous voulez afficher la table des partitions"
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+#les derniers avertissements du noyau
+dmesg | tail
+echo
+#choix du device
+while [ "$device" == "" ]
+do
+	echo -n "quel est le chemin correspondant au device (/dev/sdc, ...) ? "
+	#lecture du clavier
+	read device
+done
+echo
+while [ "$rep" != "y" -a  "$rep" != "n" ]
+do
+	echo -n "Nous allons afficher les partitions de $device [y-n] ?"
+	read rep
+done
+
+#fdisk : une partie de ce script fait office de stdin (remplace le clavier)
+if [ $rep == "y" ]
+then
+	#NB Les commandes de fdisk suivent l'exécution de fdisk jusque au mot choisi (FIN pour notre exemple). 
+	#en spécifiant <<FIN après une commande on remplace le clavier par le texte fourni dans le script.
+	#FIN est un mot au choix de maximum  8 caractères
+
+	fdisk "$device" << FIN
+n
+p
+1
+
++1G
+y
+n
+e
+2
+
+
+n
+
++1G
+p
+echo
+echo -e "${C}             --> Enter pour valider les changements${N}"
+read
+w
+FIN
+#Cette séquence isimple ne fait qu'une chose : elle affiche la table des partitions avant de quitter fdisk.
+#le deuxième mot FIN marque la fin de stdin pour la commande fdisk
+#pour réaliser des actions plus complexes il faut reproduire dans le fichier ce qui est tapé au clavier y compris les lignes blanches dans le cas d'un simple retour à la ligne (cas d'une valeur par défaut)
+
+else
+	echo vous avez abandonné ...
+fi
+echo
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+

@@ -1,0 +1,51 @@
+#!/bin/bash  
+# le couple #! s'appelle "shebang" 
+# ailleurs, le caractère # débute un commentaire
+
+#NOM    : Demo
+#CLASSE : Intro LaboIntro 01-03
+#OBJET  : réservé au makefile
+#AUTEUR	: MBA 01/2016
+
+# définitions de couleurs pour le terminal
+C='\033[44m'
+E='\033[32m\033[1m'
+N='\033[0m'
+
+echo "Tester l'écriture du Makefile"
+echo "---------------------------------"
+#La commande make a ici en paramètre le nom du makefile MonMakefile
+echo -e "Exécution de ${E}make -f MonMakefile clean${N} pour commencer en de bonnes conditions :"
+make -f MonMakefile clean
+echo -e "${C}             --> Enter pour continuer${N}"
+read # on attend un caractère au clavier (évite le défilement)
+echo "---------------------------------"
+echo "construction de l'exécutable pour exécuter"
+echo -e "Exécution de ${E}make -f MonMakefile${N} :"
+make -f MonMakefile
+echo -e "${C}             --> Enter pour continuer${N}"
+read # on attend un caractère au clavier (évite le défilement)
+echo "---------------------------------"
+echo "exécution sans construction de l'exécutable"
+echo -e "Exécution de ${E}make -f MonMakefile${N} une nouvelle fois:" 
+make -f MonMakefile
+echo -e "${C}             --> Enter pour continuer${N}"
+read # on attend un caractère au clavier (évite le défilement)
+echo --------------------------------------------------
+echo "reconstruction et exécution après "mise à jour" de boucle.h"
+echo -e "Exécution de ${E}touch boucle.h; make -f MonMakefile${N} :"
+# le ; entre deux commandes indique que celles-ci seront exécutées l'une après l'autre.
+touch boucle.h; make  -f MonMakefile
+echo -e "${C}             --> Enter pour continuer${N}"
+read # on attend un caractère au clavier (évite le défilement)
+echo --------------------------------------------------
+echo "reconstruction et exécution après "mise à jour" de boucle.c"
+echo -e "Exécution de ${E}touch boucle.c; make -f MonMakefile${N} :"
+touch boucle.c; make  -f MonMakefile
+echo -e "${C}             --> Enter pour continuer${N}"
+read # on attend un caractère au clavier (évite le défilement)
+echo --------------------------------------------------
+echo "reconstruction et exécution après "mise à jour" de boucle.o"
+echo -e "Exécution de ${E}touch boucle.o; make -f MonMakefile${N} :"
+touch boucle.o; make  -f MonMakefile
+echo -e "${C}             --> Enter pour continuer${N}"

@@ -1,0 +1,36 @@
+#!/bin/bash
+#NOM    : Demo
+#CLASSE : FS - LaboProcess 03-01
+#OBJET  : réservé au Makefile
+#AUTEUR	: J.C. Jaumain, 07/2011
+
+C='\033[44m'
+E='\033[32m\033[1m'
+N='\033[0m'
+
+clear
+echo "Démonstration du programme cg.c"
+echo "-------------------------------"
+echo
+echo "Le programme cg compile et execute le programme aff.c"
+echo "(aff.c contient des erreurs de compilation)"
+echo "-----------------------------------------------------"
+echo -e "Introduction d'une erreur de compilation dans aff.c en remplaçant int par tin :"
+echo -e "Exécution de ${E}sed -i '1,\$s/int /tin /g' aff.c${N}"
+sed -i '1,$s/int /tin /g' aff.c
+echo -e "Exécution de ${E}./cg${N} :"
+./cg
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+echo
+echo "Le programme cg compile et execute le programme aff.c"
+echo "(aff.c ne contient plus d'erreur de compilation)"
+echo "-----------------------------------------------------"
+echo -e "Correction des erreurs de compilation dans aff.c en remplaçant tin par int :"
+echo -e "Exécution de ${E}sed -i '1,\$s/tint /int /g' aff.c${N}"
+sed -i '1,$s/tin /int /g' aff.c
+echo -e "Exécution de ${E}./cg${N} :"
+./cg
+echo -e "${C}             --> Enter pour continuer${N}"
+read
+
